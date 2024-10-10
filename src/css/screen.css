@@ -48,8 +48,11 @@ table {
 }
 
 body {
+	background-color: white;
 	padding-left: 2.5vw;
 	padding-right: 2.5vw;
+	padding-bottom: 2em;
+	border-radius: 6px;
 }
 
 html {
@@ -72,6 +75,10 @@ form {
 	display: flex;
 	flex-direction: column;
 	row-gap: 0.886em; /* ~75% of the default lineheight. Trying to space it far enough the reader can easily see it but close enough for associativity as they are all part of the form */
+}
+
+img {
+	display: none;
 }
 
 p {
@@ -131,6 +138,34 @@ p {
 	.form-field {
 		width: 19.8985em; /* ~437px for 45 characters in the input fields */
 		margin-left: 2.5vw;
+	}
+}
+
+@media only screen and (min-width: 768px)
+{
+	html {
+		background-color: #f2f2f2;
+		padding-top: 1em;
+	}
+
+	body {
+		margin: auto;
+		box-shadow: 0 .25em 1em 0 #282e3e1f;
+	}
+
+	img {
+		display: block;
+		margin: auto;
+	}
+
+	.button {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.form-field {
+		margin-left: auto;
+		margin-right: auto;
 	}
 }
 
