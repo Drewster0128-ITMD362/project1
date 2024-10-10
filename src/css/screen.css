@@ -55,6 +55,7 @@ body {
 html {
     font-size: 22px;
     line-height: 1.2em;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {
@@ -73,6 +74,10 @@ form {
 	row-gap: 0.886em; /* ~75% of the default lineheight. Trying to space it far enough the reader can easily see it but close enough for associativity as they are all part of the form */
 }
 
+p {
+	opacity: 0.80;
+}
+
 .form-field {
 	display: flex;
 	flex-direction: column; /*due to less horizontal space on mobile devices */
@@ -82,6 +87,22 @@ form {
 .form-field--checkbox {
 	flex-direction: row-reverse; /* checkbox is the exception to the form-field flex-direction */
 	justify-content: flex-end;
-	column-gap: 0.5em;
+	column-gap: 0.25em;
 }
+
+.form-field__label {
+	font-variant: small-caps;
+	font-weight: 700;
+	opacity: 0.9;
+}
+
+.form-field--checkbox .form-field__label {
+	font-size: 0.89em;
+}
+
+.form-field__input {
+	font-size: 1em;
+}
+
+
 
