@@ -85,6 +85,11 @@ p {
 	opacity: 0.80;
 }
 
+footer {
+	font-size: 0.454em;
+	line-height: 1.2em;
+}
+
 .button {
 	font-size: 1em;
 	line-height: 1.4em;
