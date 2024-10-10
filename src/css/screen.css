@@ -117,5 +117,21 @@ p {
 	padding-bottom: 0.25em;
 }
 
+@media only screen and (min-width: 480px)
+{
+	body {
+		max-width: 24.1394em; /* ~531px for 52 characters per line */
+	}
+
+	.button {
+		width: fit-content;
+		margin-left: 2.5vw;
+	}
+
+	.form-field {
+		width: 19.8985em; /* ~437px for 45 characters in the input fields */
+		margin-left: 2.5vw;
+	}
+}
 
 
