@@ -47,6 +47,11 @@ table {
 	border-spacing: 0;
 }
 
+body {
+	padding-left: 2.5vw;
+	padding-right: 2.5vw;
+}
+
 html {
     font-size: 22px;
     line-height: 1.2em;
@@ -55,6 +60,28 @@ html {
 h1 {
     font-size: 1.618em;
     line-height: 1.2em;
-    padding-bottom: 1em;
+    padding-bottom: 0.37em; /* Seperation between h1 and p doesn't need to be massive, 0.37em ~= 13.2px = half of the default line height */
+}
+
+header {
+	padding-bottom: 1.2em; /* 26.4 px. Clear Enough to mark seperation between header and the form itself */
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	row-gap: 0.886em; /* ~75% of the default lineheight. Trying to space it far enough the reader can easily see it but close enough for associativity as they are all part of the form */
+}
+
+.form-field {
+	display: flex;
+	flex-direction: column; /*due to less horizontal space on mobile devices */
+	row-gap: 0.25em; /*small for asssociatively but not too close */
+}
+
+.form-field--checkbox {
+	flex-direction: row-reverse; /* checkbox is the exception to the form-field flex-direction */
+	justify-content: flex-end;
+	column-gap: 0.5em;
 }
 
