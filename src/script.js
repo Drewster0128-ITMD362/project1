@@ -31,14 +31,21 @@ function validEmail(formField)
 function hasInput(formField)
 {
     let formInput = formField.querySelector('.form-field__input');
-    if(formInput.value === '' && !formField.classList.contains('form-field--invalid'))
+    if(formInput.value === '')
     {
-        formField.classList.add('form-field--invalid');
+        if(!formField.classList.contains('form-field--invalid'))
+        {
+            formField.classList.add('form-field--invalid');
+        }
+        return false
     }
-    else if(formInput.value !== '' && formField.classList.contains('form-field--invalid'))
+    else
     {
-        //add red border
-        formField.classList.remove('form-field--invalid');
+        if(formField.classList.contains('form-field--invalid'))
+        {
+            formField.classList.remove('form-field--invalid');
+        }
+        return true
     }
 }
 
