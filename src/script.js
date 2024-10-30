@@ -29,10 +29,21 @@ function hasInput(formField)
     }
 }
 
+function formFieldOnFocusIn(formField)
+{
+    if(formField.classList.contains('form-field--invalid'))
+    {
+        formField.classList.remove('form-field--invalid');
+    }
+}
+
 //event listeners
 form.addEventListener('submit', validateSubmission);
 
 formFields.forEach((formField) => {
+    formField.addEventListener('focusin', (event) => {
+        formFieldOnFocusIn(formField);
+    })
     formField.addEventListener('focusout', (event) => {
         hasInput(formField);
     }) 
