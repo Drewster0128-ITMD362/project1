@@ -61,6 +61,12 @@ footer {
 	column-gap: 0.25em;
 }
 
+.form-field--invalid {
+	.form-field__input {
+		border-color: red;
+	}
+}
+
 .form-field__label {
 	font-variant: small-caps;
 	font-weight: 700;
