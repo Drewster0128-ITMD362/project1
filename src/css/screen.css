@@ -25,7 +25,7 @@ header {
 form {
 	display: flex;
 	flex-direction: column;
-	row-gap: 0.886em; /* ~75% of the default lineheight. Trying to space it far enough the reader can easily see it but close enough for associativity as they are all part of the form */
+	row-gap: 1.504em; /* ~75% of the default lineheight. Trying to space it far enough the reader can easily see it but close enough for associativity as they are all part of the form + fontsize of warning text */
 }
 
 img {
@@ -53,6 +53,18 @@ footer {
 	display: flex;
 	flex-direction: column; /*due to less horizontal space on mobile devices */
 	row-gap: 0.25em; /*small for asssociatively but not too close */
+	position: relative;
+}
+
+.form-field::after {
+	content: ' ';
+	color: red;
+	display: block;
+	font-size: 0.618em;
+	line-height: 1.2em;
+	width: 100%;
+	position: absolute;
+	top: 60px;
 }
 
 .form-field--checkbox {
@@ -65,6 +77,10 @@ footer {
 	.form-field__input {
 		border-color: red;
 	}
+}
+
+.form-field--invalid::after {
+	content: 'This field cannot be empty';
 }
 
 .form-field__label {
