@@ -18,13 +18,21 @@ function validateSubmission(event)
 function validEmail(formField)
 {
     let formInput = formField.querySelector('.form-field__input');
-    if(!formInput.checkValidity() && !formField.classList.contains('form-field--invalid-email'))
+    if(!formInput.checkValidity())
     {
-        formField.classList.add('form-field--invalid-email');
+        if(!formField.classList.contains('form-field--invalid-email'))
+        {
+            formField.classList.add('form-field--invalid-email');
+        }
+        return false;
     }
-    else if(formInput.checkValidity() && formField.classList.contains('form-field--invalid-email'))
+    else
     {
-        formField.classList.remove('form-field--invalid-email');
+        if(formField.classList.contains('form-field--invalid-email'))
+        {
+            formField.classList.remove('form-field--invalid-email');
+        }
+        return true;
     }
 }
 
