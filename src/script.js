@@ -15,9 +15,22 @@ function validateSubmission(event)
     //valid email
 }
 
+function validEmail(formField)
+{
+    let formInput = formField.querySelector('.form-field__input');
+    if(!formInput.checkValidity() && !formField.classList.contains('form-field--invalid-email'))
+    {
+        formField.classList.add('form-field--invalid-email');
+    }
+    else if(formInput.checkValidity() && formField.classList.contains('form-field--invalid-email'))
+    {
+        formField.classList.remove('form-field--invalid-email');
+    }
+}
+
 function hasInput(formField)
 {
-    formInput = formField.querySelector('.form-field__input');
+    let formInput = formField.querySelector('.form-field__input');
     if(formInput.value === '' && !formField.classList.contains('form-field--invalid'))
     {
         formField.classList.add('form-field--invalid');
@@ -37,6 +50,16 @@ function formFieldOnFocusIn(formField)
     }
 }
 
+function validateInput(formField)
+{
+    let formInput = formField.querySelector('.form-field__input');
+    if(formInput.type === 'email')
+    {
+        validEmail(formField);
+    }
+    hasInput(formField);
+}
+
 //event listeners
 form.addEventListener('submit', validateSubmission);
 
@@ -45,6 +68,6 @@ formFields.forEach((formField) => {
         formFieldOnFocusIn(formField);
     })
     formField.addEventListener('focusout', (event) => {
-        hasInput(formField);
+        validateInput(formField);
     }) 
 })

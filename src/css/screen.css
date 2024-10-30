@@ -73,7 +73,8 @@ footer {
 	column-gap: 0.25em;
 }
 
-.form-field--invalid {
+.form-field--invalid, 
+.form-field--invalid-email {
 	.form-field__input {
 		border-color: red;
 	}
@@ -81,6 +82,10 @@ footer {
 
 .form-field--invalid::after {
 	content: 'This field cannot be empty';
+}
+
+.form-field--invalid-email::after {
+	content: 'Please enter an email address';
 }
 
 .form-field__label {
