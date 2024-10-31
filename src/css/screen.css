@@ -88,6 +88,11 @@ footer {
 	content: 'Please enter an email address';
 }
 
+.form-field--invalid-checkbox::after {
+	content: 'You must agree to the terms and conditions';
+	top: 30px;
+}
+
 .form-field__label {
 	font-variant: small-caps;
 	font-weight: 700;
