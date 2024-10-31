@@ -15,7 +15,7 @@
         We are looking for early feedback of a beta version of Super Mario 64 2 from avid fans of the series. Only a limited number of keys will be given out. Fill out the form below for a chance to win.
       </p>
     </header>
-    <form action="#null" method="get" autocomplete="on">
+    <form action="#null" method="get" autocomplete="on" id="form">
       <div class="form-field">
         <label class="form-field__label" for="first-name">first name:</label>
         <input class="form-field__input" type="text" id="first-name" placeholder="John">
@@ -32,7 +32,7 @@
         <label class="form-field__label" for="terms">i agree to the terms and conditions</label>
         <input class="form-field__input" type="checkbox" id="terms">
       </div>
-      <input class="button" type="submit" id="submit-button" value="Sign Up Now">
+      <button class="button" type="submit" form="form" id="submit-button">sign up now</button>
     </form>
     <img src="src/img/hat.png" alt="mario hat">
     <footer>
