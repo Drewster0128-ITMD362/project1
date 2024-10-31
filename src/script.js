@@ -82,19 +82,19 @@ class FormField
         //remove current state from class list
         if(this.isValid() === 0)
         {
-            this.setState('.form-field--valid');
+            this.setState('form-field--valid');
         }
         else if(this.isValid() === 1)
         {
-            this.setState('.form-field--invalid-empty');
+            this.setState('form-field--invalid-empty');
         }
         else if(this.isValid() === 2)
         {
-            this.setState('.form-field--invalid-email');
+            this.setState('form-field--invalid-email');
         }
         else
         {
-            this.setState('.form-field--invalid-checkbox');
+            this.setState('form-field--invalid-checkbox');
         }
     }
 
@@ -109,7 +109,7 @@ formFields.forEach((formField) => {
     if(formFieldObj.getType() !== 'checkbox')
     {
         formFieldObj.formField.addEventListener('focusin', (event) => {
-            formFieldObj.setState('.form-field--valid');
+            formFieldObj.setState('form-field--valid');
         });
         formFieldObj.formField.addEventListener('focusout', (event) => {
             formFieldObj.updateState();
