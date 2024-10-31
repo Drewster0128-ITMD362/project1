@@ -3,7 +3,7 @@ class FormField
     constructor(formField)
     {
         this.formField = formField;
-        this.formField.classList.add('.form-field--valid');
+        this.formField.classList.add('form-field--valid');
     }
 
     getInput()
@@ -101,35 +101,34 @@ class FormField
 }
 
 const form = document.querySelector('form');
-
+const formButton = document.querySelector('#submit-button');
 const formFields = document.querySelectorAll('.form-field')
 const formFieldObjs = []
 formFields.forEach((formField) => {
     let formFieldObj = new FormField(formField)
-    if(formFieldObj.getType() !== 'checkbox')
-    {
-        formFieldObj.formField.addEventListener('focusin', (event) => {
-            formFieldObj.setState('form-field--valid');
-        });
-        formFieldObj.formField.addEventListener('focusout', (event) => {
-            formFieldObj.updateState();
-        });
-    }
+    formFieldObj.formField.addEventListener('focusin', (event) => {
+        formFieldObj.setState('form-field--valid');
+    });
+    formFieldObj.formField.addEventListener('focusout', (event) => {
+        formFieldObj.updateState();
+    });
     formFieldObjs.push(formFieldObj);
 });
 
-form.addEventListener('submit', (event) => {
+formButton.addEventListener('click', (event) => {
     event.preventDefault();
-    let valid = true
+    let valid = true;
     formFieldObjs.forEach((formFieldObj) => {
         valid = valid && (formFieldObj.isValid() === 0);
     })
     if(valid)
     {
-        console.log("Valid")
+        window.location.href = 'submit.html';
     }
     else
     {
-        console.log("Invalid");
+        formFieldObjs.forEach((formFieldObj) => {
+            formFieldObj.updateState();
+        })
     }
 });
