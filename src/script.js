@@ -1,88 +1,135 @@
-//html elements
+class FormField
+{
+    constructor(formField)
+    {
+        this.formField = formField;
+        this.formField.classList.add('.form-field--valid');
+    }
+
+    getInput()
+    {
+        return this.formField.querySelector('.form-field__input');
+    }
+
+    getType()
+    {
+        return this.getInput().type;
+    }
+
+    //0 for valid
+    //1 for empty
+    //2 for non-email input
+    //3 for unchecked
+    isValid()
+    {
+        let formInput = this.getInput();
+        if(this.getType() === 'email')
+        {
+            //for valid email, checkValidity() must be true and input cannot be empty
+            if(formInput.value !== '' && formInput.checkValidity())
+            {
+                return 0;
+            }
+            else if(formInput.value === '')
+            {
+                return 1;
+            }
+            else
+            {
+                return 2;
+            }
+        }
+        else if(this.getType() === 'checkbox')
+        {
+            if(formInput.checked)
+            {
+                return 0;
+            }
+            else
+            {
+                return 3;
+            }
+        }
+        else
+        {
+            if(formInput.value !== '')
+            {
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+    }
+
+    getState()
+    {
+        return this.formField.classList[this.formField.classList.length -1];
+    }
+
+    setState(newState)
+    {
+        this.formField.classList.replace(this.getState(), newState);
+    }
+
+    //.form-field--valid
+    //.form-field--invalid-empty
+    //.form-field--invalid-email
+    //.form-field--invalid-checkbox
+    updateState()
+    {
+        //remove current state from class list
+        if(this.isValid() === 0)
+        {
+            this.setState('.form-field--valid');
+        }
+        else if(this.isValid() === 1)
+        {
+            this.setState('.form-field--invalid-empty');
+        }
+        else if(this.isValid() === 2)
+        {
+            this.setState('.form-field--invalid-email');
+        }
+        else
+        {
+            this.setState('.form-field--invalid-checkbox');
+        }
+    }
+
+}
+
 const form = document.querySelector('form');
-const formFields = document.querySelectorAll('.form-field');
 
-//console.log(formInputs);
-
-//event functions
-function validateSubmission(event)
-{
-    event.preventDefault()
-    //check criteria
-    formFields.forEach((formField) => hasInput(formField))
-    //valid first name
-    //valid last name
-    //valid email
-}
-
-function validEmail(formField)
-{
-    let formInput = formField.querySelector('.form-field__input');
-    if(!formInput.checkValidity())
-    {
-        if(!formField.classList.contains('form-field--invalid-email'))
-        {
-            formField.classList.add('form-field--invalid-email');
-        }
-        return false;
-    }
-    else
-    {
-        if(formField.classList.contains('form-field--invalid-email'))
-        {
-            formField.classList.remove('form-field--invalid-email');
-        }
-        return true;
-    }
-}
-
-function hasInput(formField)
-{
-    let formInput = formField.querySelector('.form-field__input');
-    if(formInput.value === '')
-    {
-        if(!formField.classList.contains('form-field--invalid'))
-        {
-            formField.classList.add('form-field--invalid');
-        }
-        return false
-    }
-    else
-    {
-        if(formField.classList.contains('form-field--invalid'))
-        {
-            formField.classList.remove('form-field--invalid');
-        }
-        return true
-    }
-}
-
-function formFieldOnFocusIn(formField)
-{
-    if(formField.classList.contains('form-field--invalid'))
-    {
-        formField.classList.remove('form-field--invalid');
-    }
-}
-
-function validateInput(formField)
-{
-    let formInput = formField.querySelector('.form-field__input');
-    if(formInput.type === 'email')
-    {
-        validEmail(formField);
-    }
-    hasInput(formField);
-}
-
-//event listeners
-form.addEventListener('submit', validateSubmission);
-
+const formFields = document.querySelectorAll('.form-field')
+const formFieldObjs = []
 formFields.forEach((formField) => {
-    formField.addEventListener('focusin', (event) => {
-        formFieldOnFocusIn(formField);
+    let formFieldObj = new FormField(formField)
+    if(formFieldObj.getType() !== 'checkbox')
+    {
+        formFieldObj.formField.addEventListener('focusin', (event) => {
+            formFieldObj.setState('.form-field--valid');
+        });
+        formFieldObj.formField.addEventListener('focusout', (event) => {
+            formFieldObj.updateState();
+        });
+    }
+    formFieldObjs.push(formFieldObj);
+});
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    let valid = true
+    formFieldObjs.forEach((formFieldObj) => {
+        valid = valid && (formFieldObj.isValid() === 0);
     })
-    formField.addEventListener('focusout', (event) => {
-        validateInput(formField);
-    }) 
-})
+    if(valid)
+    {
+        console.log("Valid")
+    }
+    else
+    {
+        console.log("Invalid");
+    }
+});
