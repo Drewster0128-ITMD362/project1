@@ -1,162 +1,222 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
 
+@font-face
+{
+  font-family: 'SM64';
+  src: url("../fonts/TypefaceMario64.otf") format("opentype");
+}
+
 body {
-	background-color: white;
-	padding-left: 2.5vw;
-	padding-right: 2.5vw;
-	padding-bottom: 2em;
-	border-radius: 6px;
+  background-color: white;
+  padding-left: 2.5vw;
+  padding-right: 2.5vw;
+  padding-bottom: 2em;
+  border-radius: 6px;
 }
 
 html {
-    font-size: 22px;
-    line-height: 1.2em;
-	font-family:  'Source Sans 3', Arial, Helvetica, sans-serif;
+  font-size: 22px;
+  line-height: 1.2em;
+  font-family: 'Source Sans 3', Arial, Helvetica, sans-serif;
 }
 
+/*
 h1 {
-    font-size: 1.618em;
-    line-height: 1.2em;
-    padding-bottom: 0.37em; /* Seperation between h1 and p doesn't need to be massive, 0.37em ~= 13.2px = half of the default line height */
+  font-family: 'SM64', 'Source Sans 3', Arial, Helvetica, sans-serif;
+  font-size: 1.222em;
+  line-height: 1.2em;
+  padding-bottom: 0.37em; /* Seperation between h1 and p doesn't need to be massive, 0.37em ~= 13.2px = half of the default line height
+}
+*/
+
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: 1px;
+  padding-bottom: 0.37em;
+}
+
+.title__character {
+  display: inline;
+  font-family: 'SM64', 'Source Sans 3', Arial, Helvetica, sans-serif;
+  font-size: 1.348em;
+  line-height: 1.2em;
+}
+
+.title__character--red {
+  color:rgb(230, 0, 18);
+}
+
+.title__character--blue {
+  color: blue;
+}
+
+.title__character--yellow {
+  color: rgb(213, 213, 2);
+}
+
+.title__character--green {
+  color: green;
+}
+
+.title__character--space {
+  padding-right: 10px;
 }
 
 header {
-	padding-bottom: 1.2em; /* 26.4 px. Clear Enough to mark seperation between header and the form itself */
+  padding-bottom: 1.2em; /* 26.4 px. Clear Enough to mark seperation between header and the form itself */
 }
 
 form {
-	display: flex;
-	flex-direction: column;
-	row-gap: 1.504em; /* ~75% of the default lineheight. Trying to space it far enough the reader can easily see it but close enough for associativity as they are all part of the form + fontsize of warning text */
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.504em; /* ~75% of the default lineheight. Trying to space it far enough the reader can easily see it but close enough for associativity as they are all part of the form + fontsize of warning text */
 }
 
 img {
-	display: none;
+  display: none;
 }
 
 p {
-	opacity: 0.80;
+  opacity: 0.80;
 }
 
 footer {
-	font-size: 0.454em;
-	line-height: 1.2em;
+  font-size: 0.454em;
+  line-height: 1.2em;
 }
 
 .button {
-	font-size: 1em;
-	line-height: 1.4em;
-	margin-top: 1.477em; /*52px gap between checkbox and submit button to make its presense obvious */
-	font-weight: 700;
-	text-transform: uppercase;
+  font-size: 1em;
+  line-height: 1.4em;
+  margin-top: 1.477em; /*52px gap between checkbox and submit button to make its presense obvious */
+  text-transform: uppercase;
+  color: rgb(230, 0, 18);
+  background-color: white;
+  border-style: solid;
+  border-radius: 48px;
+  border-color: rgb(230, 0, 18);
+  border-width: 1px;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.button:hover {
+  background-color: rgb(253, 230, 231);
 }
 
 .form-field {
-	display: flex;
-	flex-direction: column; /*due to less horizontal space on mobile devices */
-	row-gap: 0.25em; /*small for asssociatively but not too close */
-	position: relative;
+  display: flex;
+  flex-direction: column; /*due to less horizontal space on mobile devices */
+  row-gap: 0.25em; /*small for asssociatively but not too close */
+  position: relative;
 }
 
 .form-field::after {
-	content: ' ';
-	color: red;
-	display: block;
-	font-size: 0.618em;
-	line-height: 1.2em;
-	width: 100%;
-	position: absolute;
-	top: 60px;
+  content: ' ';
+  color: red;
+  display: block;
+  font-size: 0.618em;
+  line-height: 1.2em;
+  width: 100%;
+  position: absolute;
+  top: 70px;
 }
 
 .form-field--checkbox {
-	flex-direction: row-reverse; /* checkbox is the exception to the form-field flex-direction */
-	justify-content: flex-end;
-	column-gap: 0.25em;
+  flex-direction: row-reverse; /* checkbox is the exception to the form-field flex-direction */
+  justify-content: flex-end;
+  column-gap: 0.25em;
 }
 
 .form-field--invalid-empty, 
 .form-field--invalid-email {
-	.form-field__input {
-		border-color: red;
-	}
+  .form-field__input {
+    border-color: red;
+  }
 }
 
 .form-field--invalid-empty::after {
-	content: 'This field cannot be empty';
+  content: 'This field cannot be empty';
 }
 
 .form-field--invalid-email::after {
-	content: 'Please enter an email address';
+  content: 'Please enter an email address';
 }
 
 .form-field--invalid-checkbox::after {
-	content: 'You must agree to the terms and conditions';
-	top: 30px;
+  content: 'You must agree to the terms and conditions';
+  top: 30px;
 }
 
 .form-field__label {
-	font-variant: small-caps;
-	font-weight: 700;
-	opacity: 0.9;
+  font-variant: small-caps;
+  font-weight: 700;
+  opacity: 0.9;
 }
 
 .form-field--checkbox .form-field__label {
-	font-size: 0.89em;
+  font-size: 0.89em;
 }
 
 .form-field__input {
-	border: 2px solid;
-	border-color: rgb(223, 223, 223);
-	font-size: 0.727em;
-	border-radius: 6px;
-	padding-top: 0.25em;
-	padding-bottom: 0.25em;
+  border: 2px solid;
+  border-color: rgb(223, 223, 223);
+  font-size: 0.727em;
+  border-radius: 48px;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
 }
 
 @media only screen and (min-width: 480px)
 {
-	body {
-		max-width: 24.1394em; /* ~531px for 52 characters per line */
-	}
+  body {
+    max-width: 24.1394em; /* ~531px for 52 characters per line */
+  }
 
-	.button {
-		width: fit-content;
-		margin-left: 2.5vw;
-	}
+  .button {
+    width: fit-content;
+    margin-left: 2.5vw;
+  }
 
-	.form-field {
-		width: 19.8985em; /* ~437px for 45 characters in the input fields */
-		margin-left: 2.5vw;
-	}
+  .form-field {
+    width: 19.8985em; /* ~437px for 45 characters in the input fields */
+    margin-left: 2.5vw;
+  }
 }
 
 @media only screen and (min-width: 768px)
 {
-	html {
-		background-color: #f2f2f2;
-		padding-top: 1em;
-	}
+  html {
+    background-color: rgb(241, 186, 189);
+    padding-top: 1em;
+  }
 
-	body {
-		margin: auto;
-		box-shadow: 0 .25em 1em 0 #282e3e1f;
-	}
+  body {
+    margin: auto;
+    box-shadow: 0 .25em 1em 0 #282e3e1f;
+  }
 
-	img {
-		display: block;
-		margin: auto;
-	}
+  img {
+    display: block;
+    margin: auto;
+  }
 
-	.button {
-		margin-left: auto;
-		margin-right: auto;
-	}
+  .button {
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-	.form-field {
-		margin-left: auto;
-		margin-right: auto;
-	}
+  .form-field {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 
