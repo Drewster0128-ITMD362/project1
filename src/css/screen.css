@@ -134,11 +134,9 @@ footer {
   column-gap: 0.25em;
 }
 
-.form-field--invalid-empty, 
-.form-field--invalid-email {
-  .form-field__input {
-    border-color: red;
-  }
+.form-field--invalid-empty > .form-field__input, 
+.form-field--invalid-email > .form-field__input {
+  border-color: red;
 }
 
 .form-field--invalid-empty::after {
